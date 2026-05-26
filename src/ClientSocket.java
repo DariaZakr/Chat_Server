@@ -25,7 +25,7 @@ class ClientHandler extends Thread {
             String message;
             while ((message = in.readLine()) != null) {
                 System.out.println("Получено сообщение: " + message);
-                ChatServer.broadcast(message); // Рассылаем всем
+                ChatServer.broadcast(message, out); // Рассылаем всем, кроме отправителя
             }
         } catch (IOException e) {
             System.out.println("Клиент отключился.");

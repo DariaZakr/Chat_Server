@@ -22,10 +22,12 @@ public class ChatServer {
     }
 
 
-    public static void broadcast(String message) {
+    public static void broadcast(String message, PrintWriter sender) {
         synchronized (clientWriters) {
             for (PrintWriter writer : clientWriters) {
-                writer.println(message);
+                if (writer != sender) {
+                    writer.println(message);
+                }
             }
         }
     }
