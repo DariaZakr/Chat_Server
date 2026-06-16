@@ -7,20 +7,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ChatServer {
-    private static final int PORT = 1234; // порт сервера
-    private static Set<PrintWriter> clientWriters = Collections.synchronizedSet(new HashSet<>());
+    private static final int PORT = 1234;
+    private static final Set<PrintWriter> clientWriters = Collections.synchronizedSet(new HashSet<>());
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(PORT);
-        System.out.println("Сервер запущен на порту " + PORT);
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Сервер запущен на порту " + PORT);
 
-        while (true) {
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Новый клиент подключился");
-            new ClientHandler(clientSocket).start();
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Новый клиент подключился: " + clientSocket.getInetAddress());
+
+                ClientHandler clientHandler = new ClientHandler(clientSocket);
+                clientHandler.start();
+            }
         }
     }
-
 
     public static void broadcast(String message, PrintWriter sender) {
         synchronized (clientWriters) {
@@ -31,7 +33,6 @@ public class ChatServer {
             }
         }
     }
-
 
     public static void addClient(PrintWriter writer) {
         clientWriters.add(writer);
