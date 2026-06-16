@@ -4,14 +4,18 @@ Always wondered how online chats work, so I decided make one myself. It's pretty
 
 ## Download
 
-Latest Windows build: [ChatServer.exe](https://github.com/DariaZakr/Chat_Server/releases/latest/download/ChatServer.exe)
+Windows build: [ChatServer.exe](https://github.com/DariaZakr/Chat_Server/releases/latest/download/ChatServer.exe)
 
-Works on Windows 10/11. Java 11 or newer should be installed.
+Mac build: [ChatServer.dmg](https://github.com/DariaZakr/Chat_Server/releases/latest/download/ChatServer.dmg)
+
+Linux build: [ChatServer-linux.tar.gz](https://github.com/DariaZakr/Chat_Server/releases/latest/download/ChatServer-linux.tar.gz)
+
+Java 11 or newer should be installed.
 
 ## How to run
 
-1. Download `ChatServer.exe`.
-2. Open it.
+1. Download the build for your system.
+2. Open it or run the start script.
 3. Connect from another terminal:
 
 ```bash
